@@ -12,18 +12,21 @@ jobs:
     
 
   build:
+    needs: [code]
     runs-on: ubuntu-latest
     steps:
       - name: Build the code
         run: echo "Building the code"
 
   test:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Test the code
         run: echo "Running the code"
 
   deploy:
+    needs: [build,test] 
     runs-on: ubuntu-latest
     steps:
       - name: Deploy the code
